@@ -1,6 +1,5 @@
 PROJECT_NAME := "rcost"
 PKG := "github.com/moritz31/$(PROJECT_NAME)"
-PKG_LIST := $(shell go list ${PKG}/... | grep -v /vendor/)
 GO_FILES := $(shell find . -name '*.go' | grep -v /vendor/ | grep -v _test.go)
  
 .PHONY: all dep lint vet test test-coverage build clean
@@ -11,10 +10,10 @@ dep: ## Get the dependencies
 	@go mod download
 
 lint: ## Lint Golang files
-	@golint -set_exit_status ${PKG_LIST}
+	@golint -set_exit_status ./...
 
 vet: ## Run go vet
-	@go vet ${PKG_LIST}
+	@go vet ./...
 
 test: ## Run unittests
 	@go test -v ./...
