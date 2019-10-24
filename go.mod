@@ -1,4 +1,4 @@
-module rcost
+module github.com/moritz31/rcost
 
 go 1.13
 
